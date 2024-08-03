@@ -1,7 +1,7 @@
 const Card = (props) => {
-  const { name, img, rating, price, cuisine, time } = props;
+  const { name, img, rating, price, cuisine, time, id } = props;
   return (
-    <div className="card">
+    <div className="card" id={id}>
       <img src={img} alt={name + " display image"} />
       <h3 className="name">{name}</h3>
       <span>{rating}</span>

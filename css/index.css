@@ -44,7 +44,7 @@
 }
 .card{
     width : 250px;
-    max-height: 500px;
+    height: 450px;
     background-color: rgba(183, 205, 236, 0.626);
     padding : 1rem;
     text-align: center;
@@ -52,7 +52,7 @@
     transition: scale 250ms ease-in-out;
 }
 .card > img{
-    height: inherit; width: inherit;
+    max-height: 300px; width: inherit;
     border-radius: 10px;
 }
 .card:hover{
