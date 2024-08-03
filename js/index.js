@@ -5,13 +5,14 @@ import About from "../components/About";
 import Error from "../components/Error"
 import Error2 from "../components/Error2"
 import Header from "../components/Header";
+import { Outlet } from "react-router-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const ReactApp = ({Component}) => {
+const ReactApp = () => {
   return (
     <>
       <Header />
-      <Component />
+      <Outlet />
     </>
   );
 };  
@@ -19,15 +20,20 @@ const ReactApp = ({Component}) => {
 const ReactAppRouter = createBrowserRouter([
   {
     path: "/",
-    element : <ReactApp Component={Body}/>,
+    element : <ReactApp />,
+    children : [
+      {
+        path : "/",
+        element : <Body/>
+      },
+      {
+        path : "/about",
+        element : <About/>
+      }
+    ],
     errorElement: <Error/>
     
   },
-  {
-    path: "/about",
-    element : <ReactApp Component={About}/>,
-    errorElement: <Error2/>
-  }, 
 ])
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
