@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CDN_URL } from "../resources/constant";
 import data from "../resources/data";
 import Card from "./Card";
@@ -6,18 +6,18 @@ import Card from "./Card";
 const Body = () => {
     const [restaurant, setRestaurant] = useState(data?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     const [datasSet, setdataSet] = useState(restaurant);
-    
+    const [searchText, setSearchText] = useState("");
     {console.log(restaurant);}
     const filter = ()=>{
-        const val = document.getElementById("filter")?.value??"";
         setdataSet(
-            restaurant.filter( element => element.info.name.match(val))
+            restaurant.filter( element => element.info.name.toLowerCase().includes(searchText.toLowerCase()))
         );
     }
+    useEffect(filter, [searchText]);
     return (
     <main className="main">
       <label>
-        Search <input type="search" name="filter" id="filter" />
+        Search <input type="search" name="filter" id="filter" value={searchText} onChange={(e)=>{ setSearchText(e.target.value); }} />
       </label>
       <button id="search" onClick={filter}>
         Enter
